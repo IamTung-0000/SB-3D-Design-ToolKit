@@ -27,14 +27,7 @@ const objects = [];
 var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/obj/SBmascot/';
 
 
-const testFolder = './tests/';
-const fs = require('fs');
 
-fs.readdir(MascotFolderPath, (err, files) => {
-  files.forEach(file => {    
-    console.log(file);
-  });
-});
 
 
 function createStatsGUI() {
@@ -67,6 +60,16 @@ animate();
 
 
 function init(target=null, showStat=false) {
+
+
+    const testFolder = './tests/';
+    const fs = require('fs');
+
+    fs.readdir(MascotFolderPath, (err, files) => {
+    files.forEach(file => {    
+        console.log(file);
+    });
+    });
 
     scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xF7F9FA );
