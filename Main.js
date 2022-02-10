@@ -62,14 +62,6 @@ animate();
 function init(target=null, showStat=false) {
 
 
-    const testFolder = './tests/';
-    const fs = require('fs');
-
-    fs.readdir(MascotFolderPath, (err, files) => {
-    files.forEach(file => {    
-        console.log(file);
-    });
-    });
 
     scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xF7F9FA );
