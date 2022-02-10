@@ -24,14 +24,14 @@ var dirLight1, dirLight2, pointLight, ambientLight;
 
 const objects = [];
 //Folder Path
-var MascotFolderPath = 'blob/master/models/obj/SBmascot/';
+var MascotFolderPath = 'https://github.com/IamTung-0000/SB-3D-Design-ToolKit/blob/master/Models/obj/SBmascot/';
 
 
 // const testFolder = './tests/';
 // const fs = require('fs');
 
 // fs.readdir(MascotFolderPath, (err, files) => {
-//   files.forEach(file => {
+//   files.forEach(file => {    
 //     console.log(file);
 //   });
 // });
