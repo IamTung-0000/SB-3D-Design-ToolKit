@@ -24,7 +24,7 @@ var dirLight1, dirLight2, pointLight, ambientLight;
 
 const objects = [];
 //Folder Path
-var MascotFolderPath = 'models/obj/SBmascot/';
+var MascotFolderPath = 'blob/master/models/obj/SBmascot/';
 
 
 // const testFolder = './tests/';
