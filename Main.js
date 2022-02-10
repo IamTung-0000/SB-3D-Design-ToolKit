@@ -27,14 +27,14 @@ const objects = [];
 var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/obj/SBmascot/';
 
 
-// const testFolder = './tests/';
-// const fs = require('fs');
+const testFolder = './tests/';
+const fs = require('fs');
 
-// fs.readdir(MascotFolderPath, (err, files) => {
-//   files.forEach(file => {    
-//     console.log(file);
-//   });
-// });
+fs.readdir(MascotFolderPath, (err, files) => {
+  files.forEach(file => {    
+    console.log(file);
+  });
+});
 
 
 function createStatsGUI() {
