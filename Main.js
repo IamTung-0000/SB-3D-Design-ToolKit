@@ -24,7 +24,7 @@ var dirLight1, dirLight2, pointLight, ambientLight;
 
 const objects = [];
 //Folder Path
-var MascotFolderPath = 'models/obj/SBmascot/';
+var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/obj/SBmascot/';
 
 
 // const testFolder = './tests/';
