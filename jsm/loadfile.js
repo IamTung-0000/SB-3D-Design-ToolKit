@@ -15,8 +15,8 @@ function loadFile(modelIndex) {
 
     };
     //Folder Path
-    // var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/obj/SBmascot/';
-    var MascotFolderPath = "/Models/obj/SBmascot/"; 
+    var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/obj/SBmascot/';
+    // var MascotFolderPath = "/Models/obj/SBmascot/"; 
 
     var mtl_sel = [mascot_files[modelIndex] + '.mtl'];
     var obj_sel = [mascot_files[modelIndex] + '.obj'];
