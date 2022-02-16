@@ -4,11 +4,12 @@ function loadFile(modelIndex) {
 
         if ( xhr.lengthComputable ) {
 
-            const percentComplete = xhr.loaded / xhr.total * 100;
+            const percentComplete = xhr.loaded / xhr.total * 25;
             console.log( Math.round( percentComplete, 2 ) + '% downloaded' );
             var info = "SB 3D Design ToolKits v0.1 Beta";
+            var margin = "</br>--------------------------------" 
             var email = "iamtung.asia@gmail.com";
-            document.getElementById("stats").innerHTML = Math.round( percentComplete, 2 ) + '%' + ' Tải Dữ Liệu ' + "</br>" + info + "</br>" + email  ;
+            document.getElementById("stats").innerHTML = Math.round( percentComplete, 2 ) + '%' + ' Tải Dữ Liệu ' + margin+ "</br>" + info + "</br>" + email  ;
 
         }
 
