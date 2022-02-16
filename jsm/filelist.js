@@ -1,7 +1,8 @@
 mascot_files = [
+    "ShopBase-Logo",
     "SB-Default",
-    "SB-NerdCoding",
-    // "PlusBase City"
+    "SB-NerdCoding"
+
 
 
 
