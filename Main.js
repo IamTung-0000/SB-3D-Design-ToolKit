@@ -24,7 +24,7 @@ const objects = [];
 //Folder Path
 // var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/obj/SBmascot/';
 
-
+//
 init();
 LoadScene(0); //default model load 
 animate();
