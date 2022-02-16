@@ -21,8 +21,7 @@ var last_R_value = 127, last_G_value = 127, last_B_value = 127;
 
 var filenameArr = []; 
 const objects = [];
-//Folder Path
-var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/obj/SBmascot/';
+
 
 
 init();
