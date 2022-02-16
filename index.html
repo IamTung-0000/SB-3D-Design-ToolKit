@@ -3,9 +3,9 @@
 	<head>
 		<title>ShopBase 3D Design Kit</title>
 
-		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<script type = "module" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script type = "module" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" defer>
 
 
 		<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
@@ -14,51 +14,75 @@
 		<link rel='stylesheet' href='css/main_style.css' />
 
 		
-		<script src="jsm/menu.js"></script>   
+
+		<!-- import threejs -->
+		<script src="build/three.js"></script>
+		<script src="jsm/controls/OrbitControls.js"></script>
+		<script src="jsm/loaders/MTLLoader.js"></script>
+		<script src="jsm/loaders/OBJLoader.js"></script>
+
+		
+
+		<script src="jsm/menu.js" defer></script>  
+		<script src = "utils.js" defer></script>
+		<script src="jsm/filelist.js"></script>
+		<script src="jsm/loadfile.js" defer></script>
+		<script src = "main.js" defer></script>  
 
 
-		<script>
-			$(function () {
-				$("#red, #green, #blue, #ambient_red, #ambient_green, #ambient_blue").slider({
-					orientation: "horizontal",
-					range: "min",
-					max: 255,
-					value: 127  //Default value, Light colour of model set to median value (grey colour)
-				});
-			}); 
-		</script>
 
-	
+		
+		
 
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		
 	</head>
 	<body>
 
-		<div id="aboutGlobe" style="position:absolute;top:0;left:0;width:100%;height:100%;"></div>
-		<script src = "Main.js" type="module"></script>
 
+		
+
+
+		
+
+		<div id="stats"></div>
+
+		
 
 		<div id="container">
+
 			
+			<div id ="WebGLViewer"></div>
 
 			<!--Side Menu Start-->
-			
-
 			<div class="side_menu">
 				<ul class="menu_item">
+					
+					<!-- Pose Library -->
+					<li class='dropdown'>
+						<a href='#'><img src="img/icon/Logo SB.svg" class="image" />Thư Viện 3D Assets</a>
+						<ul>
+							<li><p id="FileList"></p></li>		
+						</ul>               
+					</li>
+	
+
+					<!-- Upload Background -->
+					<li class='dropdown'>
+						<a href='#'><img src="img/icon/Logo SB.svg" class="image" />Ảnh Background</a>
+						<ul>
+							<button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getval').click()">Upload</button>
+							<input type='file' id='getval' style="display:none" />
+						</ul>                   
+					</li>
 
 					<!-- Lights -->
 					<li class='dropdown'>
 						<a href='#'><img src="img/icon/Sun_duotone.svg" class="image" />Ánh Sáng</a>
 						<ul>
-							<li><span>Ambient Light</span></li>
-							<li>
-								<label class="switch">
-									<input class="check" type="checkbox" id="ambient_light">
-									<span class="toggle round"></span>
-								</label>
-							</li>
+							<li><span>Đèn Ambient</span></li>
+							<!-- Slider -->
 							<li><span style="font-size: 12px">R</span></li>
 							<li><div id="ambient_red"></div></li>
 							<li><span style="font-size: 12px">G</span></li>
@@ -67,33 +91,41 @@
 							<li><div id="ambient_blue"></div></li>
 	
 							<li><hr style="margin-top:15px"/></li>
-							<li>Directional Light Colour</li>                 
+
+							<li>
+								<form>
+									<select id="dir_light" onchange="changeLight()">
+										<option value="front">Đèn Trước</option>
+										<option value="left">Đèn Trái</option>
+										<option value="right">Đèn Phải</option>
+										<option value="rim">Đèn Ven</option>
+									</select>
+								</form>
+							</li>  
+
+
+							<!-- Slider -->               
 								<li><span style="font-size: 12px">R</span></li>
 								<li><div id="red"></div></li>
 								<li><span style="font-size: 12px">G</span></li>
 								<li><div id="green"></div></li>
 								<li><span style="font-size: 12px">B</span></li>
-								<li><div id="blue"></div></li>                           
-							
+								<li><div id="blue"></div></li>  
+
 								<li><hr style="margin-top:15px" /></li>
-								<li>Point Light Intensity</li>
-								<li><span style="font-size: 12px">Intensity Value</span></li>
-								<li><div id="point_light"></div></li>   
-						</ul>                   
-					</li>
+								<li>Cường độ</li>
+								<li><div id="light_intensity"></div></li>
+								
+							
 
-					<!-- Pose Library -->
-					<li class='dropdown'>
-						<a href='#'><img src="img/icon/Book.svg" class="image" />Thư Viện Assets</a>
-						<ul>
-							<li><span>Mascot</span></li>
-
-							<li><span>Logo</span></li>
-							 
-						</ul>                   
+						</ul>   
 					</li>
 
 
+
+					<!-- Save PNG -->
+
+					<button class="SaveButton" id="SaveBtn"><img src="img/icon/Import_light.svg" class="image" />Lưu PNG</button>
 
 				</ul>
 
@@ -102,6 +134,11 @@
 
 
 		</div>
+
+
+ 
+		
+
 
 	</body>
 </html>

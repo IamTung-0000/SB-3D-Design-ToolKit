@@ -5,224 +5,252 @@ Author: IamTung
 email: iamtung.asia@gmailcom
 
 */
-//test
 
-import * as THREE from './build/three.module.js';
-import Stats from './jsm/libs/stats.module.js';
-import { OrbitControls } from './jsm/controls/OrbitControls.js';
-import { MTLLoader } from './jsm/loaders/MTLLoader.js';
-import { OBJLoader } from './jsm/loaders/OBJLoader.js';
+let current_window_w, current_window_h;
+var view = document.getElementById('WebGLViewer');
 
-
-
-export let camera, controls, scene, renderer;
-export let cube;
-export let material;
-export let stats, container;
+let camera, ratio, controls, scene, renderer;
+let cube;
+let material;
+let stats, container;
 //Light variable
-var dirLight1, dirLight2, pointLight, ambientLight;
 
+var frontLight, leftLight, rightLight, ambientLight;
+var last_frontLight_value = 0.5, last_leftLight_value = 0.5, last_rightLight_value = 0.5;
+var last_R_value = 127, last_G_value = 127, last_B_value = 127;
+
+var filenameArr = []; 
 const objects = [];
 //Folder Path
-var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/obj/SBmascot/';
+// var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/obj/SBmascot/';
 
+var MascotFolderPath = 'Models/obj/SBmascot/';
 
-
-
-
-function createStatsGUI() {
-
-    var thisParent;
-
-    //Create new Graph (FPS, MS, MB)
-    let stats1 = new Stats();
-
-    //Display different panel
-    stats1.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
-    stats1.domElement.style.width = '400px';
-    stats1.domElement.style.height = '400px';
-
-    //Add Stats to Document - modal 4
-    thisParent.appendChild( stats1.domElement );
-}
-
-const aboutGlobe = document.getElementById("aboutGlobe");
-
-
-init(aboutGlobe);1
-
-main();
-render(); // remove when using next line for animation loop (requestAnimationFrame)
+init();
+LoadScene(0); //default model load 
 animate();
 
 
 
 
 
-function init(target=null, showStat=false) {
-
-
+function init() {
 
     scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0xF7F9FA );
+    // scene.background = new THREE.Color( 0xF7F9FA );
     //scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
 
-    renderer = new THREE.WebGLRenderer( { antialias: true, alpha: false} );
+    current_window_w = view.offsetWidth;
+    current_window_h = window.innerHeight;
+    ratio = current_window_w / current_window_h;
+
+    renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true, preserveDrawingBuffer: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( target.offsetWidth, target.offsetHeight );
-    if (target) {
-        target.appendChild( renderer.domElement );
-    } else {
-        document.body.appendChild( renderer.domElement );
-    }
+    renderer.setSize( current_window_w, current_window_h );
 
-    if (showStat) {
-        stats = new Stats();
-        document.body.appendChild( stats.dom );
-    }
+    // document.body.appendChild( renderer.domElement );
+    view.appendChild( renderer.domElement );
 
-    camera = new THREE.PerspectiveCamera( 50, target.offsetWidth / target.offsetHeight, 1, 1000 );
-    camera.position.set( 0, 0, -280 );
+    // console.log(view.offsetWidth);
+    // console.log(view.offsetHeight);
+
+    //listen to resize
+    window.addEventListener( 'resize', onWindowResize );
+    //create new camera
+    camera = new THREE.PerspectiveCamera( 50, ratio, 1, 50000 );
 
 
     //Controls
-    controls = new OrbitControls( camera, renderer.domElement );
+    controls = new THREE.OrbitControls( camera, renderer.domElement );
     //controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
     controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
     controls.dampingFactor = 0.05;
-    controls.screenSpacePanning = false;
+    controls.screenSpacePanning = true;
     controls.enableZoom = true;
     controls.enablePan = true;
     controls.autoRotate = false;
-    controls.maxPolarAngle = Math.PI / 2;
+    // controls.maxPolarAngle = Math.PI / 2;
+
+}
+
+function onWindowResize() {
+    const ASPECT_RATIO = view.offsetWidth / window.innerHeight;
+    current_window_w =  view.offsetWidth
+    current_window_h = window.innerHeight;
+
+    camera.aspect = ASPECT_RATIO;
+    camera.updateProjectionMatrix();
+    renderer.setSize( current_window_w, current_window_h );
 
 }
 
 
 
+function LoadScene(modelIndex) {
 
-function main() {
-
-    // model
-
-    const onProgress = function ( xhr ) {
-
-        if ( xhr.lengthComputable ) {
-
-            const percentComplete = xhr.loaded / xhr.total * 100;
-            console.log( Math.round( percentComplete, 2 ) + '% downloaded' );
-
-        }
-
-    };
-
-
-
-    new MTLLoader()
-        .setPath( MascotFolderPath )
-        .load( 'SB-Default.mtl', function ( materials ) {
-
-            materials.preload();
-
-            new OBJLoader()
-                .setMaterials( materials )
-                .setPath( MascotFolderPath )
-                .load( 'SB-Default.obj', function ( object ) {
-
-                    object.position.y = -70;
-                    object.scale.set(50,50,50)
-                    object.traverse( function( node ) {
-                        if( node.material ) {
-                            node.material.side = THREE.DoubleSide;
-                        }
-                    });
-                    scene.add( object );
-
-                }, onProgress );
-
-        } );
-        
-
-    //
-
-
-    
-
+    //remove old scene
+    scene.clear()
+    //reset camera to default
+    camera.position.set( 0, 0, -300 );
+    //Load Model
+    loadFile(modelIndex);
     //Draw Light
     Light();
-    window.addEventListener( 'resize', onWindowResize );
 
-    //print ui value
-    $("#red, #green, #blue, #ambient_red, #ambient_green, #ambient_blue").slider({
-        change: function (event, ui) {
-            console.log(ui.value);
-            render();
-        }
-    });
 
 };
 
-function getColours(r, g, b) {
 
+
+
+
+
+function setColours() {
+      
+    //front light
+    var colour = getColours($('#red').slider("value"), $('#green').slider("value"), $('#blue').slider("value"));
+    var slider_value, sliderR, sliderG, sliderB;
+    switch (document.getElementById("dir_light").value) {
+        case "front":
+            //intensity
+            slider_value = $('#light_intensity').slider("value");
+            if (last_frontLight_value != slider_value) {
+                frontLight.intensity = $('#light_intensity').slider("value") * 2;
+                last_frontLight_value = slider_value;
+            }
+            break;
+        case "left":
+            slider_value = $('#light_intensity').slider("value");
+            if (last_leftLight_value != slider_value) {
+                leftLight.intensity = $('#light_intensity').slider("value") * 2;
+                last_leftLight_value = slider_value;
+            }
+            break;
+        case "right":
+            // rightLight.color.setRGB(colour[0], colour[1], colour[2]);
+            slider_value = $('#light_intensity').slider("value");
+            if (last_rightLight_value != slider_value) {
+                rightLight.intensity = $('#light_intensity').slider("value") * 2;
+                last_rightLight_value = slider_value;
+            }
+            break;
+    
+        default:
+            break;
+    }
+
+
+    var colour = getColours($('#ambient_red').slider("value"), $('#ambient_green').slider("value"),
+                            $('#ambient_blue').slider("value"));
+
+    ambientLight.color.setRGB(colour[0], colour[1], colour[2]);
+
+
+}
+
+function getColours(r, g, b) {
     var colour = [r.valueOf() / 255, g.valueOf() / 255, b.valueOf() / 255];
     return colour;
 }
 
-function setColours() {
-
-    var colour = getColours($('#red').slider("value"), $('#green').slider("value"), $('#blue').slider("value"));
-    dirLight1.color.setRGB(colour[0], colour[1], colour[2]);
-    dirLight2.color.setRGB(colour[0], colour[1], colour[2]);
-    pointLight.color.setRGB(colour[0], colour[1], colour[2]);
-
-    var colour = getColours($('#ambient_red').slider("value"), $('#ambient_green').slider("value"),
-                            $('#ambient_blue').slider("value"));
-    ambientLight.color.setRGB(colour[0], colour[1], colour[2]);
-
-}
-
-
 function Light() {
 
-    dirLight1 = new THREE.DirectionalLight( 0xffffff );
-    dirLight1.position.set( 1, 1, 1 );
-    scene.add( dirLight1 );
+    frontLight = new THREE.DirectionalLight( 0xffffff );
+    frontLight.position.set( 0, 0, 200 );
+    scene.add( frontLight );
+    const front_helper = new THREE.DirectionalLightHelper( frontLight, 50 );
+    scene.add( front_helper );
 
-    dirLight2 = new THREE.DirectionalLight( 0x002288 );
-    dirLight2.position.set( - 1, - 1, - 1 );
-    scene.add( dirLight2 );
 
-    pointLight = new THREE.PointLight( 0xffffff, 0.8 );
-    camera.add( pointLight );
+
+    leftLight = new THREE.DirectionalLight( 0x002288 );
+    leftLight.position.set( -200, 0, 0 );
+    scene.add( leftLight );
+    const left_helper = new THREE.DirectionalLightHelper( leftLight, 50 );
+    scene.add( left_helper );
+
+
+    rightLight = new THREE.DirectionalLight( 0x002288 );
+    rightLight.position.set( 200, 0, 0 );
+    scene.add( rightLight );
+    const right_helper = new THREE.DirectionalLightHelper( rightLight, 50 );
+    scene.add( right_helper );
+
+
 
     ambientLight = new THREE.AmbientLight( 0x222222 );
     scene.add( ambientLight );
 
 }
 
-function onWindowResize() {
-
-    camera.aspect = aboutGlobe.offsetWidth / aboutGlobe.offsetHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize( aboutGlobe.offsetWidth, aboutGlobe.offsetHeight );
-
-}
 
 function animate() {
 
     requestAnimationFrame( animate ); 
-
-    
     controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate = true
     render();
-    // stats.update()
 
 }
-
 
 
 function render() {
-    renderer.setClearColor( 0x000000, 0 ); // the default
     setColours();
     renderer.render( scene, camera );
 }
+
+
+// Save PNG
+window.onload = function(){ 
+    document.getElementById('SaveBtn').onclick=()=> {
+        console.log("save!");
+        saveImage()
+        }
+};
+
+function saveImage() {
+
+    
+    let renderWidth = 2048;
+    let renderHeight = renderWidth/ratio;
+    renderer.setSize( renderWidth, renderHeight);
+
+    render();
+
+    const canvas =  document.getElementsByTagName("canvas")[0]
+    // console.log(canvas);
+    const image = canvas.toDataURL("image/png");
+    const a = document.createElement("a");
+    a.href = image.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+    a.download="image.png"
+    a.click();
+
+    // back to current renderer size
+    renderer.setSize( current_window_w, current_window_h);
+    
+}
+//
+
+
+
+
+document.getElementById('getval').addEventListener('change', readURL, true);
+
+function readURL(){
+    var file = document.getElementById("getval").files[0];
+    var reader = new FileReader();
+    reader.onloadend = function(){
+        document.getElementById('WebGLViewer').style.backgroundImage = "url(" + reader.result + ")";        
+    }
+    if(file){
+        reader.readAsDataURL(file);
+    }else{
+    }
+}
+
+
+
+
+
+
+
+
