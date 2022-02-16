@@ -13,8 +13,8 @@ body {
     background: rgba(0, 0, 0, 0.5);
     padding: 10px;
     width: 200px;
-    height: 70px;
-    border: solid 2px black;
+    height: 90px;
+    border: solid 0px black;
     border-radius: 5px;
     font-family: 'Titillium Web', sans-serif;
     font-size:14px; 
@@ -28,7 +28,6 @@ body {
 button:hover{
     cursor:pointer;
 }
-
 
 
 #red, #green, #blue, #ambient_red, #ambient_green, #ambient_blue, #shine, #light_intensity{
