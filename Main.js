@@ -24,7 +24,6 @@ const objects = [];
 //Folder Path
 // var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/obj/SBmascot/';
 
-var MascotFolderPath = 'Models/obj/SBmascot/';
 
 init();
 LoadScene(0); //default model load 
@@ -109,7 +108,7 @@ function setColours() {
       
     //front light
     var colour = getColours($('#red').slider("value"), $('#green').slider("value"), $('#blue').slider("value"));
-    var slider_value, sliderR, sliderG, sliderB;
+    var slider_value;
     switch (document.getElementById("dir_light").value) {
         case "front":
             //intensity
