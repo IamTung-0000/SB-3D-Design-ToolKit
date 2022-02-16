@@ -5,7 +5,7 @@ function loadFile(modelIndex) {
         if ( xhr.lengthComputable ) {
 
             const percentComplete = xhr.loaded / xhr.total * 100;
-            // console.log( Math.round( percentComplete, 2 ) + '% downloaded' );
+            console.log( Math.round( percentComplete, 2 ) + '% downloaded' );
             var info = "SB 3D Design ToolKits v0.1 Beta";
             var email = "iamtung.asia@gmail.com";
             document.getElementById("stats").innerHTML = Math.round( percentComplete, 2 ) + '%' + ' Tải Dữ Liệu ' + "</br>" + info + "</br>" + email  ;
@@ -14,7 +14,8 @@ function loadFile(modelIndex) {
 
     };
 
-    var dir = "/Models/obj/SBmascot/";
+    // var dir = "/Models/obj/SBmascot/";
+    var dir = "https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/obj/SBmascot/"
 
     var mtl_sel = [mascot_files[modelIndex] + '.mtl'];
     var obj_sel = [mascot_files[modelIndex] + '.obj'];
