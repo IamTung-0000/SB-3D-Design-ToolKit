@@ -15,8 +15,8 @@ let material;
 let stats, container;
 //Light variable
 
-var frontLight, leftLight, rightLight, ambientLight;
-var last_frontLight_value = 0.5, last_leftLight_value = 0.5, last_rightLight_value = 0.5;
+var frontLight, leftLight, rightLight, ambientLight, topLight;
+var last_frontLight_value = 0.5, last_leftLight_value = 0.5, last_rightLight_value = 0.5, last_topLight_value = 0.5;
 var last_R_value = 127, last_G_value = 127, last_B_value = 127;
 var colour = [0,0,0];
 
@@ -113,25 +113,34 @@ function Light() {
     frontLight.position.set( 0, 0, -200 );
     scene.add( frontLight );
 
-    // const front_helper = new THREE.DirectionalLightHelper( frontLight, 50 );
-    // scene.add( front_helper );
-
-
-
     leftLight = new THREE.DirectionalLight( 0x002288 );
     leftLight.position.set( -200, 0, 0 );
     scene.add( leftLight );
-
-    // const left_helper = new THREE.DirectionalLightHelper( leftLight, 50 );
-    // scene.add( left_helper );
-
 
     rightLight = new THREE.DirectionalLight( 0x002288 );
     rightLight.position.set( 200, 0, 0 );
     scene.add( rightLight );
 
+    topLight = new THREE.SpotLight( 0x002288 );
+    topLight.position.set( 0, 600, 200 );
+    scene.add( topLight );
+
+
+
+    // const front_helper = new THREE.DirectionalLightHelper( frontLight, 50 );
+    // scene.add( front_helper );
+
+    // const left_helper = new THREE.DirectionalLightHelper( leftLight, 50 );
+    // scene.add( left_helper );
+
+
     // const right_helper = new THREE.DirectionalLightHelper( rightLight, 50 );
     // scene.add( right_helper );
+
+    // const top_helper = new THREE.SpotLightHelper( topLight, 50 );
+    // scene.add( top_helper );
+
+
 
 
 

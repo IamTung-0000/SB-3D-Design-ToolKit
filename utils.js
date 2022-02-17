@@ -40,6 +40,9 @@ function changeLight() {
         case "right":
             $('#light_intensity').slider("value",last_rightLight_value);
             break;
+        case "top":
+            $('#light_intensity').slider("value",last_topLight_value);
+            break;
     
         default:
             break;

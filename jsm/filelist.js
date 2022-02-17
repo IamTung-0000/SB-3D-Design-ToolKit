@@ -1,7 +1,8 @@
 mascot_files = [
-    "ShopBase-Logo",
-    "SB-Default",
-    "SB-NerdCoding"
+    "Logo-ShopBase",
+    "Mascot-SB-Default",
+    "Mascot-SB-NerdCoding",
+    "Mascot-SB-Fly"
 ]
 
 misc_files = [

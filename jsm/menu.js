@@ -10,7 +10,7 @@ $(document).ready(function () {
                 FileListStr.push("<li> <span>" + "<a onclick" +  "= 'LoadScene(" + file_index + ")';>" + mascot_files[file_index] + "</a> </span> </li> " );
               }
               var newFileListStr = FileListStr.toString();
-              var trimStr = newFileListStr.replace(",","").replace("%20"," ");
+              var trimStr = newFileListStr.replaceAll(",","");
             document.getElementById("FileList").innerHTML = trimStr;
 
             // hide any open menus and remove all other classes
