@@ -1,6 +1,16 @@
 # Blender MTL File: 'NerdCoding.blend'
 # Material Count: 19
 
+newmtl Eye
+Ns 756.962606
+Ka 0.098446 0.098446 0.098446
+Kd 1.000000 1.000000 1.000000
+Ks 0.256477 0.256477 0.256477
+Ke 0.009999 0.009999 0.009999
+Ni 1.120000
+d 1.000000
+illum 3
+
 newmtl Eyes_Pupil
 Ns 617.685210
 Ka 1.000000 1.000000 1.000000
@@ -169,16 +179,6 @@ Ni 1.450000
 d 1.000000
 illum 2
 
-newmtl screen_01
-Ns 323.999994
-Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-
 newmtl screen_pur
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
@@ -188,4 +188,4 @@ Ke 0.024178 0.057382 0.210106
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd /Textures/screen2@2x.png
+map_Kd /Volumes/GoogleDrive/My Drive/Enterprise/OCG/BrandKit/MascotShopBase/Textures/screen2@2x.png
