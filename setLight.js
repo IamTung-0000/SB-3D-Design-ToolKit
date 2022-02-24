@@ -7,9 +7,9 @@ function setColours() {
     
 
     ambientLight.color.setRGB(colour[0], colour[1], colour[2]);
+
+
     
-      
-    //front light
     
     
     colour = getColours($('#red').slider("value"), $('#green').slider("value"), $('#blue').slider("value"));
@@ -44,7 +44,7 @@ function setColours() {
             // rightLight.color.setRGB(colour[0], colour[1], colour[2]);
             slider_value = $('#light_intensity').slider("value");
             if (last_topLight_value != slider_value) {
-                topLight.intensity = $('#light_intensity').slider("value") * 50;
+                topLight.intensity = $('#light_intensity').slider("value") * 4;
                 last_topLight_value = slider_value;
             }
             break;

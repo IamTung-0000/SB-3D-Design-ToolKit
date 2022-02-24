@@ -91,11 +91,14 @@ function LoadScene(modelIndex) {
     scene.clear()
     //reset camera to default
     camera.position.set( 0, 0, -300 );
-    // camera.rotion.set(90);
-    //Load Model
-    loadFile(modelIndex);
     //Draw Light
     Light();
+    //Load Model
+    loadFile(modelIndex);
+
+
+    
+
 
 
 };
@@ -104,16 +107,18 @@ function LoadScene(modelIndex) {
 
 function Light() {
 
-    frontLight = new THREE.DirectionalLight( 0xffffff );
-    frontLight.position.set( 0, 0, -200 );
+
+
+    frontLight = new THREE.SpotLight( 0xffffff );
+    frontLight.position.set( 0, 0, -600 );
     scene.add( frontLight );
 
-    leftLight = new THREE.DirectionalLight( 0x002288 );
-    leftLight.position.set( -200, 0, 0 );
+    leftLight = new THREE.SpotLight( 0xffffff );
+    leftLight.position.set( -600, 0, 0 );
     scene.add( leftLight );
 
-    rightLight = new THREE.DirectionalLight( 0x002288 );
-    rightLight.position.set( 200, 0, 0 );
+    rightLight = new THREE.SpotLight( 0xffffff );
+    rightLight.position.set( 600, 0, 0 );
     scene.add( rightLight );
 
     topLight = new THREE.SpotLight( 0xffffff );
@@ -122,18 +127,22 @@ function Light() {
 
 
 
-    // const front_helper = new THREE.DirectionalLightHelper( frontLight, 50 );
+  
+
+
+
+    // const front_helper = new THREE.SpotLightHelper( frontLight, 1 );
     // scene.add( front_helper );
 
-    // const left_helper = new THREE.DirectionalLightHelper( leftLight, 50 );
+    // const left_helper = new THREE.SpotLightHelper( leftLight, 1 );
     // scene.add( left_helper );
 
 
-    // const right_helper = new THREE.DirectionalLightHelper( rightLight, 50 );
-    // scene.add( right_helper );
+    // // const right_helper = new THREE.SpotLightHelper( rightLight, 1 );
+    // // scene.add( right_helper );
 
-    // const top_helper = new THREE.SpotLightHelper( topLight, 50 );
-    // scene.add( top_helper );
+    // // const top_helper = new THREE.SpotLightHelper( topLight, 1 );
+    // // scene.add( top_helper );
 
 
 

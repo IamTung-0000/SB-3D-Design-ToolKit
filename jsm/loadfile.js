@@ -54,7 +54,6 @@ function loadFile(modelIndex) {
 
         }, onProgress
 
-    );        
-    
+    );   
 
 }
