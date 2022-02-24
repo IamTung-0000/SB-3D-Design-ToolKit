@@ -4,7 +4,8 @@ mascot_files = [
     "Mascot-SB-RunHi",
     "Mascot-SB-NerdCoding",
     "Mascot-SB-Jump",
-    "Mascot-SB-HeadOnly"
+    "Mascot-SB-HeadOnly",
+    "PlusBaseCity"
     // "Other-House"
 ]
 

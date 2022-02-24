@@ -102,10 +102,6 @@ function LoadScene(modelIndex) {
 
 
 
-
-
-
-
 function Light() {
 
     frontLight = new THREE.DirectionalLight( 0xffffff );
@@ -120,7 +116,7 @@ function Light() {
     rightLight.position.set( 200, 0, 0 );
     scene.add( rightLight );
 
-    topLight = new THREE.SpotLight( 0x002288 );
+    topLight = new THREE.SpotLight( 0xffffff );
     topLight.position.set( 0, 600, 200 );
     scene.add( topLight );
 

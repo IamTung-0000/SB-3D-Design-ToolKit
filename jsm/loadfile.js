@@ -19,7 +19,7 @@ function loadFile(modelIndex) {
 
     //Folder Path
     var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/gltf/';
-    //teee
+    
     // var MascotFolderPath = "/Models/gltf/"; 
 
     var obj_sel = [mascot_files[modelIndex] + '.gltf'];
@@ -54,53 +54,7 @@ function loadFile(modelIndex) {
 
         }, onProgress
 
-    );
-
-
-
-
-    // new THREE.MTLLoader()
-    //     .setPath( MascotFolderPath )
-    //     .load( mtl_sel, function ( materials ) {
-
-    //         materials.preload();
-    //         // console.log(materials.materials);
-            
-
-    //         new THREE.OBJLoader()
-    //             .setMaterials( materials )
-    //             .setPath( MascotFolderPath )
-    //             .load( obj_sel, function ( object ) {
-                    
-
-    //                 //Object transform
-    //                 object.position.y = -90;
-    //                 object.rotation.y = (Math.PI / 2)*2;
-    //                 object.scale.set(50,50,50)
-
-
-    //                 //Material Setting
-    //                 object.traverse( function( node ) {
-    //                     if( node.material ) {
-    //                         //Side setting
-    //                         node.material.side = THREE.DoubleSide;
-    //                         //shininess
-    //                         node.material.shininess = 4;
-    //                         // node.material.flatShading = true;
-    //                         // materials.materials.black_pupil.shininess = 300;
-                            
-    //                     }
-    //                 });
-
-    //                 scene.add( object );
-                    
-
-    //             }, onProgress );
-
-    //     });
-
-    
-        
+    );        
     
 
 }
