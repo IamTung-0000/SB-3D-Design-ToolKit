@@ -1,10 +1,11 @@
 /*
 
-ThreeJS Mascot Loader
+ShopBase 3D Design Toolkits
 Author: IamTung
 email: iamtung.asia@gmailcom
 
 */
+
 
 let current_window_w, current_window_h;
 var view = document.getElementById('WebGLViewer');
@@ -16,7 +17,7 @@ let stats, container;
 //Light variable
 
 var frontLight, leftLight, rightLight, ambientLight, topLight;
-var last_frontLight_value = 0.5, last_leftLight_value = 0.5, last_rightLight_value = 0.5, last_topLight_value = 0.5;
+var last_frontLight_value = 0.8, last_leftLight_value = 0.8, last_rightLight_value = 0.8, last_topLight_value = 0.8;
 var last_R_value = 127, last_G_value = 127, last_B_value = 127;
 var colour = [0,0,0];
 
@@ -28,8 +29,6 @@ const objects = [];
 init();
 LoadScene(0); //default model load 
 animate();
-
-
 
 
 

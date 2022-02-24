@@ -4,7 +4,7 @@ $(function () {
         orientation: "horizontal",
         range: "min",
         max: 255,
-        value: 127  //Default value, Light colour of model set to median value (grey colour)
+        value: 255  //Default value, Light colour of model set to median value (grey colour)
     });
 }); 
 
@@ -14,7 +14,7 @@ $("#light_intensity").slider({
     min: 0,
     max: 1,
     step: 0.1,
-    value: 0.5,
+    value: 0.8,
     slide: function (event, ui) {
         // frontLight.intensity = ui.value;
         // leftLight.intensity = ui.value;
