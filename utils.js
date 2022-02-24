@@ -13,6 +13,7 @@ $("#light_intensity").slider({
     orientation: "horizontal",
     min: 0,
     max: 1,
+    //update step
     step: 0.01,
     value: 0.8,
     slide: function (event, ui) {
