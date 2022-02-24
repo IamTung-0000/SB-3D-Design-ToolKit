@@ -19,6 +19,7 @@ function loadFile(modelIndex) {
 
     //Folder Path
     var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/gltf/';
+    //teee
     // var MascotFolderPath = "/Models/gltf/"; 
 
     var obj_sel = [mascot_files[modelIndex] + '.gltf'];
