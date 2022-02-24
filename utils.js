@@ -13,7 +13,7 @@ $("#light_intensity").slider({
     orientation: "horizontal",
     min: 0,
     max: 1,
-    step: 0.05,
+    step: 0.01,
     value: 0.8,
     slide: function (event, ui) {
         // frontLight.intensity = ui.value;
