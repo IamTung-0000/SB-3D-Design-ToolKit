@@ -1,5 +1,6 @@
 mascot_files = [
     "Logo-ShopBase",
+    "Logo-OCG",
     "Mascot-SB-Float",
     "Mascot-SB-RunHi",
     "Mascot-SB-NerdCoding",
