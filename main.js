@@ -39,7 +39,7 @@ function getThreeDivSize() {
 function init() {
 
     scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0xF7F9FA );
+    // scene.background = new THREE.Color( 0xF7F9FA );
     //scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
 
     getThreeDivSize();
