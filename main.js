@@ -30,17 +30,19 @@ init();
 LoadScene(0); //default model load 
 animate();
 
-
+function getThreeDivSize() {
+    current_window_w =  view.clientWidth
+    current_window_h = view.clientHeight;
+    ratio = current_window_w / current_window_h;
+}
 
 function init() {
 
     scene = new THREE.Scene();
-    // scene.background = new THREE.Color( 0xF7F9FA );
+    scene.background = new THREE.Color( 0xF7F9FA );
     //scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
 
-    current_window_w = view.offsetWidth;
-    current_window_h = window.innerHeight;
-    ratio = current_window_w / current_window_h;
+    getThreeDivSize();
 
     renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true, preserveDrawingBuffer: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
@@ -72,10 +74,9 @@ function init() {
 }
 
 function onWindowResize() {
-    const ASPECT_RATIO = view.offsetWidth / window.innerHeight;
-    current_window_w =  view.offsetWidth
-    current_window_h = window.innerHeight;
-
+    //update Div Size
+    getThreeDivSize();
+    const ASPECT_RATIO = current_window_w / current_window_h;
     camera.aspect = ASPECT_RATIO;
     camera.updateProjectionMatrix();
     renderer.setSize( current_window_w, current_window_h );
@@ -95,10 +96,6 @@ function LoadScene(modelIndex) {
     Light();
     //Load Model
     loadFile(modelIndex);
-
-
-    
-
 
 
 };
@@ -153,8 +150,17 @@ function Light() {
 
 }
 
+var lastWidth = 0;
 
 function animate() {
+
+    if (view.offsetWidth != lastWidth) {
+        console.log(view.offsetWidth);
+        console.log(view.offsetHeight);
+        console.log(ratio);
+        lastWidth = view.offsetWidth;
+
+    }
 
     requestAnimationFrame( animate ); 
     controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate = true
@@ -172,6 +178,8 @@ function render() {
 
 
     renderer.render( scene, camera );
+
+    
     
 }
 
