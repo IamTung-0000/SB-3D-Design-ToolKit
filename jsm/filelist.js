@@ -8,7 +8,8 @@ mascot_files = [
     "Mascot-SB-HeadOnly",
     "PlusBaseCity",
     "Gift-OngDungButLogo",
-    "Gift-OngDungButMascot"
+    // "Gift-OngDungButMascot",
+    "Gift-OngDungButMascot2"
 
     // "Other-House"
 ]
