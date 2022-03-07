@@ -1,6 +1,6 @@
 
 
-function loadFile(modelIndex) {
+function loadFile(fileName) {
 
      const onProgress = function ( xhr ) {
 
@@ -22,7 +22,7 @@ function loadFile(modelIndex) {
     
     var MascotFolderPath = "/Models/gltf/"; 
 
-    var obj_sel = [mascot_files[modelIndex] + '.gltf'];
+    var obj_sel = [fileName + '.gltf'];
     var resourceURL = MascotFolderPath + obj_sel;
     console.log(resourceURL);
 
@@ -55,5 +55,28 @@ function loadFile(modelIndex) {
         }, onProgress
 
     );   
+
+}
+
+function LoadFileList(categorySelect, targetDiv, TrimName) {
+
+    //Create File list when expand
+    var FileListStr = [];
+    for (let file_index = 0; file_index < categorySelect.length; file_index++) {
+
+        FileListStr.push( 
+            "<div class = 'ThumbnailRect'>"
+                + "<img src=" + '"./Models/thumbnail/' + categorySelect[file_index] + '.jpg"' + " onclick =" + "'LoadScene(" + "`" + categorySelect[file_index] + "`" +")'" + " class =" + "'image_thumbnail '" + "alt=" +"Model>"
+                + "<p>" +  categorySelect[file_index].replaceAll(TrimName,"") + "</p> "
+                + "</div>"
+        ) 
+    }
+
+    var newFileListStr = FileListStr.toString();
+    var trimStr = newFileListStr.replaceAll(","," ");
+    
+
+    document.getElementById(targetDiv).innerHTML = trimStr;
+    // console.log($( "div.ModelThumbnailContent" ).html());
 
 }

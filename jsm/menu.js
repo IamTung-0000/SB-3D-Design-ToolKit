@@ -1,35 +1,43 @@
-$(document).ready(function () {
+/* 
+Loop through all dropdown buttons to toggle between hiding
+and showing its dropdown content -
+This allows the user to have multiple dropdowns without any conflict
+*/
+    
+function DropDownMenu(classNameParent, classNameChild) {
 
-    $(".menu_item > li > a").on("click", function (e) {
+    var dropdown = document.getElementsByClassName(classNameParent);
+    var i;
 
-        if (!$(this).hasClass("active")) {
-            //Create File list when expand
-            var FileListStr = [];
-
-            for (let file_index = 0; file_index < mascot_files.length; file_index++) {
-                FileListStr.push("<li> <span>" + "<a onclick" +  "= 'LoadScene(" + file_index + ")';>" + mascot_files[file_index] + "</a> </span> </li> " );
-              }
-              var newFileListStr = FileListStr.toString();
-              var trimStr = newFileListStr.replaceAll(",","");
-            document.getElementById("FileList").innerHTML = trimStr;
-
-            // hide any open menus and remove all other classes
-            $(".menu_item li ul").slideUp(350);
-            $(".menu_item li a").removeClass("active");
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
             
-            // open new menu and add the open class
-            
-            $(this).next("ul").slideDown(350);
-            $(this).addClass("active");
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
 
-            $(this).next("li > ul").slideDown(350);
-            $(this).addClass("active");
+            // Collapse
+            if (dropdownContent.style.display === "block") {
+                // dropdownContent.style.display = "none";
+                $(dropdownContent).slideUp(350);
+            } else { // dropdown
+                $(classNameChild).slideUp(350);
+                $(dropdownContent).slideDown(350);
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+}
 
-            
-        } else if ($(this).hasClass("active")) {
-            $(this).removeClass("active");
-            $(this).next("ul").slideUp(350);
-        }
-    });
 
-});
+// Jquerry function to load html
+$(function () {
+    var includes = $('[data-include]')
+    $.each(includes, function () {
+        var file = 'MenuContentView/' + $(this).data('include') + '.html'
+        $(this).load(file)
+    })
+})
+
+
+
+

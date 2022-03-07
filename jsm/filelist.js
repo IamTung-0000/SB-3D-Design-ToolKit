@@ -1,19 +1,23 @@
-mascot_files = [
-    "Logo-ShopBase",
+
+
+var logo_files = [
     "Logo-OCG",
+    "Logo-ShopBase"
+]
+
+var mascot_files = [
     "Mascot-SB-Float",
     "Mascot-SB-RunHi",
     "Mascot-SB-NerdCoding",
     "Mascot-SB-Jump",
     "Mascot-SB-HeadOnly",
-    "PlusBaseCity",
-    "Gift-OngDungButLogo",
-    // "Gift-OngDungButMascot",
-    "Gift-OngDungButMascot2"
-
-    // "Other-House"
 ]
 
-misc_files = [
-    "PlusBase City"
+var KeyVisual_files = [
+    "PlusBaseCity"
+]
+
+demo_quatang = [
+    "Gift-OngDungButLogo",
+    "Gift-OngDungButMascot2"
 ]

@@ -21,14 +21,17 @@ var last_frontLight_value = 0.8, last_leftLight_value = 0.8, last_rightLight_val
 var last_R_value = 127, last_G_value = 127, last_B_value = 127;
 var colour = [0,0,0];
 
-var filenameArr = []; 
 const objects = [];
 
 
-
+//Auto Hide Menu
+DropDownMenu("dropdown-btn", ".dropdown-container");
+DropDownMenu("dropdown-btn-folder",".dropdown-container-folder");
+//init scene
 init();
-LoadScene(0); //default model load 
+LoadScene(logo_files[0]); //default model load 
 animate();
+
 
 function getThreeDivSize() {
     current_window_w =  view.clientWidth
@@ -154,13 +157,13 @@ var lastWidth = 0;
 
 function animate() {
 
-    if (view.offsetWidth != lastWidth) {
-        console.log(view.offsetWidth);
-        console.log(view.offsetHeight);
-        console.log(ratio);
-        lastWidth = view.offsetWidth;
+    // if (view.offsetWidth != lastWidth) {
+    //     console.log(view.offsetWidth);
+    //     console.log(view.offsetHeight);
+    //     console.log(ratio);
+    //     lastWidth = view.offsetWidth;
 
-    }
+    // }
 
     requestAnimationFrame( animate ); 
     controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate = true

@@ -1,0 +1,39 @@
+
+
+#red, #green, #blue, #ambient_red, #ambient_green, #ambient_blue, #shine, #light_intensity{
+    width:98%;      
+    margin-top:4px;
+    font-size: 7.5px;
+}
+
+#rot_slider{
+    width:100%;    
+    float:right;
+    font-size: 7.5px;
+}
+
+#shine .ui-slider-handle, #point_light .ui-slider-handle,
+.ui-slider-handle  { font-size: 10px; border-radius: 34px; outline: none; }
+
+#red .ui-slider-range { background: #ef2929; }
+#red .ui-slider-handle { border-color: #ef2929;  border-radius: 34px; outline: none;}
+
+#ambient_red .ui-slider-range { background: #ef2929; }
+#ambient_red .ui-slider-handle { border-color: #ef2929;  border-radius: 34px; outline: none;}
+
+#green .ui-slider-range { background: #8ae234;}
+#green .ui-slider-handle { border-color: #8ae234; border-radius: 34px; outline: none; }
+
+#ambient_green .ui-slider-range { background: #8ae234;}
+#ambient_green .ui-slider-handle{
+    border-color: #8ae234;
+    border-radius: 34px;
+    outline: none;
+}
+
+#blue .ui-slider-range { background: #729fcf; }
+#blue .ui-slider-handle { border-color: #729fcf; border-radius: 00px; outline: none; }
+
+#ambient_blue .ui-slider-range { background: #729fcf; }
+#ambient_blue .ui-slider-handle { border-color: #729fcf; border-radius: 34px; outline: none; }
+

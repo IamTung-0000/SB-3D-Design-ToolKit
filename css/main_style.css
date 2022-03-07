@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body {
     font-family: Helvetica, FreeSans, Arial, sans-serif;
-    font-size: 10px;
     background-color: #bebebe; /*565646*/
 }
 
@@ -15,22 +14,7 @@ body {
     text-align: center;
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
-
     background-color: #f3f3f3;
-}
-
-
-
-.side_menu {
-
-    float:left; 
-    width:25%;
-    position: absolute;
-    background-color: #303030;
-    bottom: 0px;
-    top: 40px;
-    left: 0; 
-
 }
 
 #WebGLViewer {
@@ -44,8 +28,6 @@ body {
     top: 40px;
     bottom: 0px;
 }
-
-
 
 #stats {
     position: absolute;
@@ -74,173 +56,93 @@ button:hover{
 }
 
 
-#red, #green, #blue, #ambient_red, #ambient_green, #ambient_blue, #shine, #light_intensity{
-    width:98%;      
-    margin-top:4px;
-    font-size: 7.5px;
-}
-
-#rot_slider{
-    width:100%;    
-    float:right;
-    font-size: 7.5px;
-}
-
-#shine .ui-slider-handle, #point_light .ui-slider-handle,
-.ui-slider-handle  { font-size: 10px; border-radius: 34px; outline: none; }
-
-#red .ui-slider-range { background: #ef2929; }
-#red .ui-slider-handle { border-color: #ef2929;  border-radius: 34px; outline: none;}
-
-#ambient_red .ui-slider-range { background: #ef2929; }
-#ambient_red .ui-slider-handle { border-color: #ef2929;  border-radius: 34px; outline: none;}
-
-#green .ui-slider-range { background: #8ae234;}
-#green .ui-slider-handle { border-color: #8ae234; border-radius: 34px; outline: none; }
-
-#ambient_green .ui-slider-range { background: #8ae234;}
-#ambient_green .ui-slider-handle{
-    border-color: #8ae234;
-    border-radius: 34px;
-    outline: none;
-}
-
-#blue .ui-slider-range { background: #729fcf; }
-#blue .ui-slider-handle { border-color: #729fcf; border-radius: 34px; outline: none; }
-
-#ambient_blue .ui-slider-range { background: #729fcf; }
-#ambient_blue .ui-slider-handle { border-color: #729fcf; border-radius: 34px; outline: none; }
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 90px;
-    height: 34px;
-}
-
-.switch.helper {
-    position: relative;
-    display: inline-block;
-    width: 55px;
-    height: 24px;
-    margin-left:10px;
-}
-
-.switch input {
-	display:none;
+.icon{
+    float: left; 
+    padding-right: 25px;
 } 
 
-.toggle {
+/* Fixed sidenav, full height */
+.sidenav {
+
+    float:left; 
+    width:25%;
     position: absolute;
+    background-color: #303030;
+    bottom: 0px;
+    top: 40px;
+    left: 0; 
+    
+  }
+  
+  /* Style the sidenav links and the dropdown button */
+  .sidenav a, .dropdown-btn, .dropdown-btn-folder {
+    padding: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
     cursor: pointer;
+    outline: none;
+  }
+  
+  /* On mouse-over */
+  .sidenav a:hover, .dropdown-btn:hover, .dropdown-btn-folder:hover {
+    color: #f1f1f1;
+  }
+  
+  /* Add an active class to the active dropdown button */
+  /* .active {
+    background-color: rgb(37, 86, 143);
+    color: white;
+  } */
+  
+  /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+  .dropdown-container, .dropdown-container-folder {
+    display: none;
+    background-color: #262626;
+    padding: 10px;
+    padding-bottom: 30px;
+  }
+  
+  /* Optional: Style the caret down icon */
+  .fa-caret-down {
+    float: right;
+    padding-right: 8px;
+  }
+  
+  /* Some media queries for responsiveness */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+
+  #overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ca2222;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 34px;
-}
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
 
-.toggle:before {
+  #HelpText{
+
     position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-.grid:before {
-    height: 16px;
-    width: 16px;
-}
-
-.toggle:after {
-    content:'OFF';
-    color: white;
-    display: block;
-    position: absolute;
-    transform: translate(-50%,-50%);
     top: 50%;
-    left: 70%;
-    font-size: 12px;
-    font-family: Verdana, sans-serif;
-}
-
-input:checked + .toggle:after {  
-    content:'ON';
-    left: 30%;
-}
-           
-input:checked + .toggle {
-    background-color: #2ab934;
-}
-
-input:focus + .toggle {
-    box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .toggle:before {
-    -webkit-transform: translateX(55px);
-    -ms-transform: translateX(55px);
-    transform: translateX(55px);
-}
-
-input:checked + .grid:before {
-    -webkit-transform: translateX(30px);
-    -ms-transform: translateX(30px);
-    transform: translateX(30px);
-}
-
-
-
-
-.menu_item, .SaveButton{
-    width: 100%;
-    margin: 0;
-    margin-top: 5px;
-    padding: 0;
-    list-style: none;
-    font-family: 'Titillium Web', sans-serif; 
-    font-size: 15px;
-}
-
-
-
-.menu_item li.dropdown, .SaveButton { 
-    color: #fff; padding: 2px; border: 0px solid #bbb; text-align: left;
-}
-
-.menu_item li, li, .SaveButton { 
-    border-top:0; margin: 4px 12px; background:#1d1e1e;  margin-top: 0px; border-radius: 20px;
-    
-}
-
-.menu_item li a, li a, .SaveButton{
-    text-decoration:none; color:#fff; display:inline-block; padding:8px 12px; width:90%;
-}
-
-
-.menu_item li a:hover, li a:hover, .SaveButton a:hover{
-    background: #2160dd; text-decoration:none; border-radius: 20px; padding: 11px;
-
-}
-
-.menu_item li ul{ 
-    list-style: none;  display: none; margin:0; padding:8px;  padding-bottom: 20px;
-}
-
-
-
-.image{
-    float: left; 
-    padding-right: 25px;
-}
-
-
+    left: 50%;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+  }

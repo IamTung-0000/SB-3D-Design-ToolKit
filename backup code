@@ -1,0 +1,86 @@
+
+
+		<!--Side Menu Start-->
+		<div class="side_menu">
+            
+			<ul class="menu_item">
+				
+				<!-- Pose Library -->
+				<li class='dropdown'>
+					<a href='#'><img src="img/icon/Logo SB.svg" class="image" />Thư Viện 3D Assets</a>
+					<ul>
+						<li><p id="FileList"></p></li>		
+					</ul>               
+				</li>
+
+
+				<!-- Upload Background -->
+				<li class='dropdown'>
+					<a href='#'><img src="img/icon/Logo SB.svg" class="image" />Ảnh Background</a>
+					<ul>
+						<button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getval').click()">Upload</button>
+						<input type='file' id='getval' style="display:none" />
+					</ul>                   
+				</li>
+
+				<!-- Lights -->
+				<li class='dropdown'>
+					<a href='#'><img src="img/icon/Sun_duotone.svg" class="image" />Ánh Sáng</a>
+					<ul>
+						<li><span>Đèn Ambient</span></li>
+						<!-- Slider -->
+						<li><span style="font-size: 12px">R</span></li>
+						<li><div id="ambient_red"></div></li>
+						<li><span style="font-size: 12px">G</span></li>
+						<li><div id="ambient_green"></div></li>
+						<li><span style="font-size: 12px">B</span></li>
+						<li><div id="ambient_blue"></div></li>
+
+						<li><hr style="margin-top:15px"/></li>
+
+						<li>
+							<form>
+								<select id="dir_light" onchange="changeLight()">
+									<option value="front">Đèn Trước</option>
+									<option value="left">Đèn Trái</option>
+									<option value="right">Đèn Phải</option>
+									<option value="top">Đèn Trên</option>
+								</select>
+							</form>
+						</li>  
+
+
+						<!-- Slider -->               
+							<li><span style="font-size: 12px">R</span></li>
+							<li><div id="red"></div></li>
+							<li><span style="font-size: 12px">G</span></li>
+							<li><div id="green"></div></li>
+							<li><span style="font-size: 12px">B</span></li>
+							<li><div id="blue"></div></li>  
+
+							<li><hr style="margin-top:15px" /></li>
+							<li>Cường độ</li>
+							<li><div id="light_intensity"></div></li>
+							
+					</ul>   
+				</li>
+
+
+
+				<!-- Save PNG -->
+								<!-- Pose Library -->
+								<li class='dropdown'>
+									<a href='#'><img src="img/icon/Import_light.svg" class="image" />Tải Xuống</a>
+									<ul>
+										<button class="SaveButton" id="SaveBtn"><img src="img/icon/Import_light.svg" class="image" />Lưu PNG</button>	
+									</ul>               
+								</li>
+
+				
+
+			</ul>
+
+		</div>
+
+
+

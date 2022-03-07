@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>ShopBase 3D Design Kit</title>
+		<title>ShopBase 3D Design ToolKit</title>
 
+		<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		
 		<script src="jsm/jquery/jquery-2.2.4.min.js"></script>
 		<script src="jsm/jquery/jquery-ui.js"></script>
 		<link rel="stylesheet" href="css/jquery-ui.css">
@@ -12,10 +15,10 @@
 		<link rel="shortcut icon" href="favicon.ico">
 
 		<link rel='stylesheet' href='css/main_style.css' />
-
-		
+		<link rel='stylesheet' href='css/LightSettings_Style.css'/>
 
 		<!-- import threejs -->
+		
 		<script src="build/three.js" ></script>
 
 		<script src="jsm/controls/OrbitControls.js"></script>
@@ -23,9 +26,7 @@
 		<script src="jsm/loaders/MTLLoader.js"></script>
 		<script src="jsm/loaders/OBJLoader.js"></script>
 
-
-		
-
+		<script src="jsm/help.js" defer></script>  
 		<script src="jsm/menu.js" defer></script>  
 		<script src = "utils.js" defer></script>
 		<script src = "setLight.js" defer></script>
@@ -34,16 +35,18 @@
 		<script src = "main.js" defer></script>
 		
 
-
-
-		
-		
-
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		
 	</head>
 	<body>
+
+			<div id="overlay" onclick="HelpOff()">
+				<div id="HelpText">Chuột trái để quay model <br/>
+					Chuột phải để di chuyển, <br/>
+					dùng con lăn để zoom <br/>
+				</div>
+		 	</div>
 
 
 		
@@ -52,96 +55,135 @@
 		</div>
 
 		
-
-
-		
-		<div id ="WebGLViewer"></div>
+		<div id ="WebGLViewer">
+		</div>
 
 		<div id="stats"> </div>
 
+		<div class="sidenav">
 
-		<!--Side Menu Start-->
-		<div class="side_menu">
-			<ul class="menu_item">
+			<!-- Thư viện Assets -->
+			<button class="dropdown-btn"> 
+				<i class="fa fa-caret-down"></i>
+				<a href='#'><img src="img/icon/Folder.svg" class="icon" />Thư Viện 3D Assets</a>
+			  </button>
+			  <div class="dropdown-container">
+
+				<!-- Logo Folder -->
+				<button class="dropdown-btn-folder"> 
+					<i class="fa fa-caret-down"></i>
+					<a href='#'><img src="img/icon/Folder.svg" class="icon" />Logo</a>
+				  </button>
+				  <div class="dropdown-container-folder">
+					<div data-include="LogoFolderView"></div>
+				  </div>
+
+				<!-- Mascot Folder -->
+				<button class="dropdown-btn-folder"> 
+					<i class="fa fa-caret-down"></i>
+					<a href='#'><img src="img/icon/Folder.svg" class="icon" />Mascot</a>
+				  </button>
+				  <div class="dropdown-container-folder">
+					<div data-include="MascotFolderView"></div>
+				  </div>
+
+				<!-- KeyVisual Folder -->
+				<button class="dropdown-btn-folder"> 
+					<i class="fa fa-caret-down"></i>
+					<a href='#'><img src="img/icon/Folder.svg" class="icon" />Key Visual</a>
+				  </button>
+				  <div class="dropdown-container-folder">
+					<div data-include="KeyVisualFolderView"></div>
+				  </div>
+
+			  </div>
+
+			  
+			  <!-- Ảnh Background -->
+			  <button class="dropdown-btn"> 
+				<i class="fa fa-caret-down"></i>
+				<a href='#'><img src="img/icon/Image.svg" class="icon" />Ảnh Background</a>
+			  </button>
+			  <div class="dropdown-container">
+
+				<button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getval').click()">Upload</button>
+				<input type='file' id='getval' style="display:none" />
 				
-				<!-- Pose Library -->
-				<li class='dropdown'>
-					<a href='#'><img src="img/icon/Logo SB.svg" class="image" />Thư Viện 3D Assets</a>
-					<ul>
-						<li><p id="FileList"></p></li>		
-					</ul>               
-				</li>
+			  </div>
+
+			  <!-- Ánh sáng -->
+
+			  <button class="dropdown-btn"> 
+				<i class="fa fa-caret-down"></i>
+				<a href='#'><img src="img/icon/Sun.svg" class="icon" />Ánh Sáng</a>
+			  </button>
+
+			  <div class="dropdown-container">
+				<!-- Ánh sáng code -->
+
+				<p>Đèn Ambient</p>
+
+				<!-- Slider -->
+				<span style="font-size: 12px">R</span>
+				<div id="ambient_red"></div>
+				<span style="font-size: 12px">G</span>
+				<div id="ambient_green"></div>
+				<span style="font-size: 12px">B</span>
+				<div id="ambient_blue"></div>
+				
+				<hr style="margin-top:15px"/>
+				
+				
+				<form>
+					<select id="dir_light" onchange="changeLight()">
+						<option value="front">Đèn Trước</option>
+						<option value="left">Đèn Trái</option>
+						<option value="right">Đèn Phải</option>
+						<option value="top">Đèn Trên</option>
+					</select>
+				</form>
+				 
+
+				<!-- Slider -->               
+					<span style="font-size: 12px">R</span>
+					<div id="red"></div></li>
+					<span style="font-size: 12px">G</span>
+					<div id="green"></div>
+					<span style="font-size: 12px">B</span>
+					<div id="blue"></div> 
+				
+					<hr style="margin-top:15px" />
+					Cường độ
+					<div id="light_intensity"></div>
+
+			  </div>
 
 
-				<!-- Upload Background -->
-				<li class='dropdown'>
-					<a href='#'><img src="img/icon/Logo SB.svg" class="image" />Ảnh Background</a>
-					<ul>
-						<button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getval').click()">Upload</button>
-						<input type='file' id='getval' style="display:none" />
-					</ul>                   
-				</li>
+			<!-- Tải xuống -->
 
-				<!-- Lights -->
-				<li class='dropdown'>
-					<a href='#'><img src="img/icon/Sun_duotone.svg" class="image" />Ánh Sáng</a>
-					<ul>
-						<li><span>Đèn Ambient</span></li>
-						<!-- Slider -->
-						<li><span style="font-size: 12px">R</span></li>
-						<li><div id="ambient_red"></div></li>
-						<li><span style="font-size: 12px">G</span></li>
-						<li><div id="ambient_green"></div></li>
-						<li><span style="font-size: 12px">B</span></li>
-						<li><div id="ambient_blue"></div></li>
+			<button class="dropdown-btn"> 
+				<i class="fa fa-caret-down"></i>
+				<a href='#'><img src="img/icon/Download.svg" class="icon" />Tải Xuống</a>
+				</button>
+				<div class="dropdown-container">
 
-						<li><hr style="margin-top:15px"/></li>
-
-						<li>
-							<form>
-								<select id="dir_light" onchange="changeLight()">
-									<option value="front">Đèn Trước</option>
-									<option value="left">Đèn Trái</option>
-									<option value="right">Đèn Phải</option>
-									<option value="top">Đèn Trên</option>
-								</select>
-							</form>
-						</li>  
+					<button class="SaveButton" id="SaveBtn"><img src="img/icon/Download.svg" class="image" />Lưu PNG</button>	
+				
+				</div>
 
 
-						<!-- Slider -->               
-							<li><span style="font-size: 12px">R</span></li>
-							<li><div id="red"></div></li>
-							<li><span style="font-size: 12px">G</span></li>
-							<li><div id="green"></div></li>
-							<li><span style="font-size: 12px">B</span></li>
-							<li><div id="blue"></div></li>  
-
-							<li><hr style="margin-top:15px" /></li>
-							<li>Cường độ</li>
-							<li><div id="light_intensity"></div></li>
-							
-						
-
-					</ul>   
-				</li>
-
-
-
-				<!-- Save PNG -->
-
-				<button class="SaveButton" id="SaveBtn"><img src="img/icon/Import_light.svg" class="image" />Lưu PNG</button>
-
-			</ul>
-
-		</div>
+			
+		  </div>
 
 
 
+		  
 
-
- 
 		
+
+
+
+
 
 
 	</body>
