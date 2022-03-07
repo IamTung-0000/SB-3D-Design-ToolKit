@@ -6,7 +6,10 @@ mascot_files = [
     "Mascot-SB-NerdCoding",
     "Mascot-SB-Jump",
     "Mascot-SB-HeadOnly",
-    "PlusBaseCity"
+    "PlusBaseCity",
+    "Gift-OngDungButLogo",
+    "Gift-OngDungButMascot"
+
     // "Other-House"
 ]
 
