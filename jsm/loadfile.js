@@ -18,9 +18,9 @@ function loadFile(fileName) {
     };
 
     //Folder Path
-    // var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/gltf/';
+    var MascotFolderPath = 'https://raw.githubusercontent.com/IamTung-0000/SB-3D-Design-ToolKit/master/Models/gltf/';
     
-    var MascotFolderPath = "/Models/gltf/"; 
+    // var MascotFolderPath = "/Models/gltf/"; 
 
     var obj_sel = [fileName + '.gltf'];
     var resourceURL = MascotFolderPath + obj_sel;
