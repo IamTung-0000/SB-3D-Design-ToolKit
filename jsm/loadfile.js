@@ -10,7 +10,7 @@ function loadFile(fileName) {
             console.log( Math.round( percentComplete, 2 ) + '% downloaded' );
             var info = "SB 3D Design ToolKits v0.1.2";
             var margin = "</br>--------------------------------" 
-            var email = "iamtung.asia@gmail.com";
+            var email = "@2022 - Team OCG Design ";
             document.getElementById("stats").innerHTML = Math.round( percentComplete, 2 ) + '%' + ' Tải Dữ Liệu ' + margin+"</br>" + email  ;
 
         }
