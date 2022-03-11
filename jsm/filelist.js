@@ -14,7 +14,8 @@ var mascot_files = [
 ]
 
 var KeyVisual_files = [
-    "PlusBaseCity"
+    "PlusBaseCity",
+    "VuTran-SBCity"
 ]
 
 demo_quatang = [
