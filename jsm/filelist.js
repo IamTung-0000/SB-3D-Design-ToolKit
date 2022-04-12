@@ -3,7 +3,7 @@
 var logo_files = [
     "Logo-OCG",
     "Logo-ShopBase",
-    "Logo_PlusBase"
+    "Logo-PlusBase"
 ]
 
 var mascot_files = [
